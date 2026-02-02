@@ -7,12 +7,13 @@ public class DemoPaddle : MonoBehaviour
     //public Transform myTransform = GetComponent<Transform>();
     public float paddleSpeed = 1f;
     public float forceStrength = 10f;
-    public Rigidbody lBody = new Rigidbody();
-    public Rigidbody rBody = new Rigidbody();
+    public Rigidbody lBody;
+    public Rigidbody rBody;
     public float maxZ = 5f;
     public float ballSpeed;
-        public Transform ballPos;
+    public Transform ballPos;
     public Rigidbody ball;
+    public Collision wall;
     void Start()
     {
         
@@ -83,10 +84,5 @@ public class DemoPaddle : MonoBehaviour
 
         Debug.DrawRay(transform.position, rotatedVector * 5f, Color.red);
         */
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        
     }
 }
