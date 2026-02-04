@@ -10,7 +10,8 @@ public class TriggerScore : MonoBehaviour
     public Rigidbody ball;
     public float ballSpeed = 10f;
     public BallScript transfer;
-    public TextMeshProUGUI countText;
+    public TextMeshProUGUI leftText;
+    public TextMeshProUGUI rightText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,21 +33,20 @@ public class TriggerScore : MonoBehaviour
         {
             if (rightScoreNum > 9)
             {
-                leftScoreNum = -1; //ensure score goes back to 0 since a "scoring" still occurs, if this was set to 0, it would become 1!
-                rightScoreNum = -1;
+                leftScoreNum = 0; //ensure score goes back to 0 since a "scoring" still occurs, if this was set to 0, it would become 1!
+                rightScoreNum = 0;
                 Debug.Log($" Game Over, Right Paddle Wins");
                 ballPos.position = new Vector3(0f, 0f, 0f);
                 Vector3 force = new Vector3(Random.Range(-3f, -2f), 0f, Random.Range(-3f, -2f));
                 ball.linearVelocity = force * ballSpeed;
                 SetCountTextR();
                 SetCountTextL();
-            }
-            if (rightScoreNum <= 9)
+            } else
             {
                 rightScoreNum++;
                 Debug.Log($" Player 2 has scored. Their score is: " + rightScoreNum);
                 ballPos.position = new Vector3(0f, 0f, 0f);
-                Vector3 force = new Vector3(Random.Range(-3f, -2f), 0f, Random.Range(-3f, -2f));
+                Vector3 force = new Vector3(Random.Range(-5f, -3f), 0f, Random.Range(-5f, -3f));
                 ball.linearVelocity = force * ballSpeed;
                 transfer.resetSpeed();
                 SetCountTextR();
@@ -56,21 +56,20 @@ public class TriggerScore : MonoBehaviour
         {
             if (leftScoreNum > 9)
             {
-                rightScoreNum = -1; //ensure score goes back to 0 since a "scoring" still occurs, if this was set to 0, it would become 1!
-                leftScoreNum = -1;
+                rightScoreNum = 0; //ensure score goes back to 0 since a "scoring" still occurs, if this was set to 0, it would become 1!
+                leftScoreNum = 0;
                 Debug.Log($" Game Over, Left Paddle Wins");
                 ballPos.position = new Vector3(0f, 0f, 0f);
-                Vector3 force = new Vector3(Random.Range(2f, 3f), 0f, Random.Range(2f, 3f));
+                Vector3 force = new Vector3(Random.Range(3f, 5f), 0f, Random.Range(3f, 5f));
                 ball.linearVelocity = force * ballSpeed;
                 SetCountTextL();
                 SetCountTextR();
-            }
-            if (leftScoreNum <= 9)
+            }else
             {
                 leftScoreNum++;
                 Debug.Log($" Player 1 has scored. Their score is: " + leftScoreNum);
                 ballPos.position = new Vector3(0f, 0f, 0f);
-                Vector3 force = new Vector3(Random.Range(2f, 3f), 0f, Random.Range(2f, 3f));
+                Vector3 force = new Vector3(Random.Range(3f, 5f), 0f, Random.Range(3f, 5f));
                 ball.linearVelocity = force * ballSpeed;
                 transfer.resetSpeed();
                 SetCountTextL();
@@ -81,10 +80,10 @@ public class TriggerScore : MonoBehaviour
 
     void SetCountTextL()
     {
-        countText.text = "Left Paddle: " + leftScoreNum.ToString();
+        leftText.text = "Left Paddle: " + leftScoreNum.ToString();
     }
     void SetCountTextR()
     {
-        countText.text = "Right Paddle: " + rightScoreNum.ToString();
+        rightText.text = "Right Paddle: " + rightScoreNum.ToString();
     }
 }

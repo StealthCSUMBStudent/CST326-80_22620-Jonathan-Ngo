@@ -603,7 +603,8 @@ MonoBehaviour:
   ball: {fileID: 754130238}
   ballSpeed: 2
   transfer: {fileID: 754130243}
-  countText: {fileID: 1862315909}
+  leftText: {fileID: 1862315909}
+  rightText: {fileID: 1024446659}
 --- !u!1 &523684565
 GameObject:
   m_ObjectHideFlags: 0
@@ -1371,7 +1372,7 @@ GameObject:
   - component: {fileID: 1024446660}
   - component: {fileID: 1024446659}
   m_Layer: 5
-  m_Name: Left
+  m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1877,7 +1878,8 @@ MonoBehaviour:
   ball: {fileID: 754130238}
   ballSpeed: 2
   transfer: {fileID: 754130243}
-  countText: {fileID: 1024446659}
+  leftText: {fileID: 1862315909}
+  rightText: {fileID: 1024446659}
 --- !u!1 &1497368257
 GameObject:
   m_ObjectHideFlags: 0
@@ -2051,7 +2053,7 @@ GameObject:
   - component: {fileID: 1862315910}
   - component: {fileID: 1862315909}
   m_Layer: 5
-  m_Name: Right
+  m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
