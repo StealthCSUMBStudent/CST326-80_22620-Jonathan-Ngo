@@ -2526,18 +2526,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoreForLeft
       objectReference: {fileID: 0}
+    - target: {fileID: 6892147665454909645, guid: dfbea0e77e84fca4aba06126c55e291e, type: 3}
+      propertyPath: m_TagString
+      value: ScorezoneForLeftToScore
+      objectReference: {fileID: 0}
     - target: {fileID: 8149381806143417522, guid: dfbea0e77e84fca4aba06126c55e291e, type: 3}
       propertyPath: ball
       value: 
       objectReference: {fileID: 754130238}
     - target: {fileID: 8149381806143417522, guid: dfbea0e77e84fca4aba06126c55e291e, type: 3}
+      propertyPath: scoreL
+      value: 
+      objectReference: {fileID: 8300000, guid: 720e6d4b82d61294097a6caa98287f6f, type: 3}
+    - target: {fileID: 8149381806143417522, guid: dfbea0e77e84fca4aba06126c55e291e, type: 3}
+      propertyPath: scoreR
+      value: 
+      objectReference: {fileID: 8300000, guid: 99c936ad681682a4f830b57e88c4ad09, type: 3}
+    - target: {fileID: 8149381806143417522, guid: dfbea0e77e84fca4aba06126c55e291e, type: 3}
       propertyPath: ballPos
       value: 
       objectReference: {fileID: 754130242}
     - target: {fileID: 8149381806143417522, guid: dfbea0e77e84fca4aba06126c55e291e, type: 3}
+      propertyPath: winnerL
+      value: 
+      objectReference: {fileID: 8300000, guid: 4fe7d3d2e6ac20d4ab569e848f2e9a93, type: 3}
+    - target: {fileID: 8149381806143417522, guid: dfbea0e77e84fca4aba06126c55e291e, type: 3}
+      propertyPath: winnerR
+      value: 
+      objectReference: {fileID: 8300000, guid: bd1b89f9542ddff44876c4d77a5a06df, type: 3}
+    - target: {fileID: 8149381806143417522, guid: dfbea0e77e84fca4aba06126c55e291e, type: 3}
       propertyPath: leftText
       value: 
       objectReference: {fileID: 1862315909}
+    - target: {fileID: 8149381806143417522, guid: dfbea0e77e84fca4aba06126c55e291e, type: 3}
+      propertyPath: oneMoreL
+      value: 
+      objectReference: {fileID: 8300000, guid: 50513458f96d0184996f5d1e21589137, type: 3}
+    - target: {fileID: 8149381806143417522, guid: dfbea0e77e84fca4aba06126c55e291e, type: 3}
+      propertyPath: oneMoreR
+      value: 
+      objectReference: {fileID: 8300000, guid: f5798ddbb375cd74681c2cccfcdc32e9, type: 3}
     - target: {fileID: 8149381806143417522, guid: dfbea0e77e84fca4aba06126c55e291e, type: 3}
       propertyPath: transfer
       value: 
@@ -2673,18 +2701,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoreForRight
       objectReference: {fileID: 0}
+    - target: {fileID: 1136494896469668463, guid: 421a361def5b23e4eaecc5a543b3312b, type: 3}
+      propertyPath: m_TagString
+      value: ScorezoneForRightToScore
+      objectReference: {fileID: 0}
     - target: {fileID: 5735553944832002794, guid: 421a361def5b23e4eaecc5a543b3312b, type: 3}
       propertyPath: ball
       value: 
       objectReference: {fileID: 754130238}
     - target: {fileID: 5735553944832002794, guid: 421a361def5b23e4eaecc5a543b3312b, type: 3}
+      propertyPath: scoreL
+      value: 
+      objectReference: {fileID: 8300000, guid: 720e6d4b82d61294097a6caa98287f6f, type: 3}
+    - target: {fileID: 5735553944832002794, guid: 421a361def5b23e4eaecc5a543b3312b, type: 3}
+      propertyPath: scoreR
+      value: 
+      objectReference: {fileID: 8300000, guid: 99c936ad681682a4f830b57e88c4ad09, type: 3}
+    - target: {fileID: 5735553944832002794, guid: 421a361def5b23e4eaecc5a543b3312b, type: 3}
       propertyPath: ballPos
       value: 
       objectReference: {fileID: 754130242}
     - target: {fileID: 5735553944832002794, guid: 421a361def5b23e4eaecc5a543b3312b, type: 3}
+      propertyPath: winnerL
+      value: 
+      objectReference: {fileID: 8300000, guid: 4fe7d3d2e6ac20d4ab569e848f2e9a93, type: 3}
+    - target: {fileID: 5735553944832002794, guid: 421a361def5b23e4eaecc5a543b3312b, type: 3}
+      propertyPath: winnerR
+      value: 
+      objectReference: {fileID: 8300000, guid: bd1b89f9542ddff44876c4d77a5a06df, type: 3}
+    - target: {fileID: 5735553944832002794, guid: 421a361def5b23e4eaecc5a543b3312b, type: 3}
       propertyPath: leftText
       value: 
       objectReference: {fileID: 1862315909}
+    - target: {fileID: 5735553944832002794, guid: 421a361def5b23e4eaecc5a543b3312b, type: 3}
+      propertyPath: oneMoreL
+      value: 
+      objectReference: {fileID: 8300000, guid: 50513458f96d0184996f5d1e21589137, type: 3}
+    - target: {fileID: 5735553944832002794, guid: 421a361def5b23e4eaecc5a543b3312b, type: 3}
+      propertyPath: oneMoreR
+      value: 
+      objectReference: {fileID: 8300000, guid: f5798ddbb375cd74681c2cccfcdc32e9, type: 3}
     - target: {fileID: 5735553944832002794, guid: 421a361def5b23e4eaecc5a543b3312b, type: 3}
       propertyPath: transfer
       value: 
