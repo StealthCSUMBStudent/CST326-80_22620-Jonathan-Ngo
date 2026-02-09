@@ -12,6 +12,21 @@ public class TriggerScore : MonoBehaviour
     public BallScript transfer;
     public TextMeshProUGUI leftText;
     public TextMeshProUGUI rightText;
+    public AudioClip scoreL;
+    public AudioClip scoreR;
+    public AudioClip oneMoreL;
+    public AudioClip oneMoreR;
+    public AudioClip winnerL;
+    public AudioClip winnerR;
+    AudioSource audioSource;
+
+    //ScorezoneForLeftToScore
+    //ScorezoneForRightToScore
+
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,6 +51,7 @@ public class TriggerScore : MonoBehaviour
                 leftScoreNum = 0; //ensure score goes back to 0 since a "scoring" still occurs, if this was set to 0, it would become 1!
                 rightScoreNum = 0;
                 Debug.Log($" Game Over, Right Paddle Wins");
+                audioSource.PlayOneShot(winnerR);
                 ballPos.position = new Vector3(0f, 0f, 0f);
                 Vector3 force = new Vector3(Random.Range(-3f, -2f), 0f, Random.Range(-3f, -2f));
                 ball.linearVelocity = force * ballSpeed;
@@ -45,6 +61,14 @@ public class TriggerScore : MonoBehaviour
             {
                 rightScoreNum++;
                 Debug.Log($" Player 2 has scored. Their score is: " + rightScoreNum);
+                if (rightScoreNum <= 9)
+                {
+                    audioSource.PlayOneShot(scoreR);
+                }
+                if (rightScoreNum > 9)
+                {
+                    audioSource.PlayOneShot(oneMoreR);
+                }
                 ballPos.position = new Vector3(0f, 0f, 0f);
                 Vector3 force = new Vector3(Random.Range(-5f, -3f), 0f, Random.Range(-5f, -3f));
                 ball.linearVelocity = force * ballSpeed;
@@ -59,6 +83,7 @@ public class TriggerScore : MonoBehaviour
                 rightScoreNum = 0; //ensure score goes back to 0 since a "scoring" still occurs, if this was set to 0, it would become 1!
                 leftScoreNum = 0;
                 Debug.Log($" Game Over, Left Paddle Wins");
+                audioSource.PlayOneShot(winnerL);
                 ballPos.position = new Vector3(0f, 0f, 0f);
                 Vector3 force = new Vector3(Random.Range(3f, 5f), 0f, Random.Range(3f, 5f));
                 ball.linearVelocity = force * ballSpeed;
@@ -68,6 +93,14 @@ public class TriggerScore : MonoBehaviour
             {
                 leftScoreNum++;
                 Debug.Log($" Player 1 has scored. Their score is: " + leftScoreNum);
+                if (leftScoreNum <= 9)
+                {
+                    audioSource.PlayOneShot(scoreL);
+                }
+                if (leftScoreNum > 9)
+                {
+                    audioSource.PlayOneShot(oneMoreL);
+                }
                 ballPos.position = new Vector3(0f, 0f, 0f);
                 Vector3 force = new Vector3(Random.Range(3f, 5f), 0f, Random.Range(3f, 5f));
                 ball.linearVelocity = force * ballSpeed;

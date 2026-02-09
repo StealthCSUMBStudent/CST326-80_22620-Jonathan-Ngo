@@ -1,5 +1,5 @@
 using UnityEngine;
-
+[RequireComponent(typeof(AudioSource))]
 public class BallScript : MonoBehaviour
 {
     public Rigidbody ball;
@@ -9,7 +9,14 @@ public class BallScript : MonoBehaviour
     public float speedIncrease = 0.5f;
     public float changeTime = 0;
     public int randomNum;
+    public AudioClip boing;
+    AudioSource audioSource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     void Start()
     {
         Vector3 force = new Vector3(0f, 0f, 0f);
@@ -53,6 +60,12 @@ public class BallScript : MonoBehaviour
         {
             speed += speedIncrease;
             Vector3 force = new Vector3(Random.Range(1f, 2f), 0f, Random.Range(0.5f, 1f));
+            //audioSource.clip = boing;
+            //audioSource.Play();
+            if (collision.gameObject.CompareTag("Left Paddle"))
+            {
+                audioSource.PlayOneShot(boing);
+            }
             ball.linearVelocity = (ballSpeed * force) * speed;
             changeTime = Time.time;
             Debug.Log($"$current speed is: " + speed);
@@ -62,6 +75,12 @@ public class BallScript : MonoBehaviour
         {
             speed += speedIncrease;
             Vector3 force = new Vector3(Random.Range(-2f, -1f), 0f, Random.Range(-1f, -0.5f));
+            //audioSource.clip = boing;
+            //audioSource.Play();
+            if (collision.gameObject.CompareTag("Right Paddle"))
+            {
+                audioSource.PlayOneShot(boing);
+            }
             ball.linearVelocity = (ballSpeed * force) * speed;
             changeTime = Time.time;
             Debug.Log($"current speed is: " + speed);
