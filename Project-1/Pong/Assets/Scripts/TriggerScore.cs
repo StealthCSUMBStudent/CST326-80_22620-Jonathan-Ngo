@@ -1,5 +1,9 @@
-using UnityEngine;
+using JetBrains.Annotations;
 using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
+//Sources Cited:
+//https://vionixstudio.com/2022/06/16/unity-quaternion-and-rotation-guide/
 public class TriggerScore : MonoBehaviour
 {
     public int leftScoreNum;
@@ -19,6 +23,14 @@ public class TriggerScore : MonoBehaviour
     public AudioClip winnerL;
     public AudioClip winnerR;
     AudioSource audioSource;
+    public Transform leftHand;
+    public Transform rightHand;
+    public int leftHandPower;
+    public int rightHandPower;
+    Quaternion rotationLpost = Quaternion.Euler(6.9f, 0f, 0f);
+    Quaternion rotationLpre = Quaternion.Euler(6.76f, 15.1f, 1.8f);
+    Quaternion rotationRpost = Quaternion.Euler(6.9f, 0f, 0f);
+    Quaternion rotationRpre = Quaternion.Euler(6.76f, -15.1f, 1.8f);
     Color red = new Color(255f,0f,0f);
 
     //ScorezoneForLeftToScore
@@ -31,15 +43,42 @@ public class TriggerScore : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        leftHandPower = 0;
+        rightHandPower = 0;
         leftScoreNum = 0;
         rightScoreNum = 0;
         leftText.color = Color.white;
         rightText.color = Color.white;
+        leftHand.position = new Vector3(-4.12f,26.9f,-20.6f);
+        rightHand.position = new Vector3(4.12f, 26.9f, -20.6f);
+        leftHand.rotation = rotationLpre;
+        rightHand.rotation = rotationRpre;
     }
     // Update is called once per frame
     void Update()
     {
+        if (Keyboard.current.aKey.isPressed)
+        {
+            if (leftHandPower > 0)
+            {
+                leftHand.position = new Vector3(12.7f, 23.8f, 3.9f);
+                leftHand.rotation = rotationLpost;
+                leftHandPower--;
+                Debug.Log($" Left Hand Power: " + leftHandPower);
+            }
 
+        }
+
+        if (Keyboard.current.leftArrowKey.isPressed)
+        {
+            if (rightHandPower > 0)
+            {
+                rightHand.position = new Vector3(-12.7f, 23.8f, 3.9f);
+                rightHand.rotation = rotationRpost;
+                rightHandPower--;
+                Debug.Log($" Right Hand Power: " + rightHandPower);
+            }
+        }
     }
     void OnTriggerEnter(Collider other)
     {
@@ -53,10 +92,16 @@ public class TriggerScore : MonoBehaviour
             {
                 leftScoreNum = 0; //ensure score goes back to 0 since a "scoring" still occurs, if this was set to 0, it would become 1!
                 rightScoreNum = 0;
+                leftHandPower = 0;
+                rightHandPower = 0;
                 leftText.color = Color.white;
                 rightText.color = Color.white;
                 Debug.Log($" Game Over, Right Paddle Wins");
                 audioSource.PlayOneShot(winnerR);
+                leftHand.position = new Vector3(-4.12f, 26.9f, -20.6f);
+                rightHand.position = new Vector3(4.12f, 26.9f, -20.6f);
+                leftHand.rotation = rotationLpre;
+                rightHand.rotation = rotationRpre;
                 ballPos.position = new Vector3(0f, 0f, 0f);
                 Vector3 force = new Vector3(Random.Range(-3f, -2f), 0f, Random.Range(-3f, -2f));
                 ball.linearVelocity = force * ballSpeed;
@@ -83,6 +128,13 @@ public class TriggerScore : MonoBehaviour
                 {
                     rightText.color = Color.yellow;
                 }
+                if (rightScoreNum == 3 || rightScoreNum == 6 || rightScoreNum == 9)
+                {
+                    leftHandPower++;
+                    Debug.Log($" Left Hand Power: " + leftHandPower);
+                }
+                rightHand.position = new Vector3(4.12f, 26.9f, -20.6f);
+                rightHand.rotation = rotationRpre;
                 ballPos.position = new Vector3(0f, 0f, 0f);
                 Vector3 force = new Vector3(Random.Range(-5f, -3f), 0f, Random.Range(-5f, -3f));
                 ball.linearVelocity = force * ballSpeed;
@@ -100,6 +152,10 @@ public class TriggerScore : MonoBehaviour
                 rightText.color = Color.white;
                 Debug.Log($" Game Over, Left Paddle Wins");
                 audioSource.PlayOneShot(winnerL);
+                leftHand.position = new Vector3(-4.12f, 26.9f, -20.6f);
+                rightHand.position = new Vector3(4.12f, 26.9f, -20.6f);
+                leftHand.rotation = rotationLpre;
+                rightHand.rotation = rotationRpre;
                 ballPos.position = new Vector3(0f, 0f, 0f);
                 Vector3 force = new Vector3(Random.Range(3f, 5f), 0f, Random.Range(3f, 5f));
                 ball.linearVelocity = force * ballSpeed;
@@ -126,6 +182,13 @@ public class TriggerScore : MonoBehaviour
                 {
                     leftText.color = Color.yellow;
                 }
+                if (leftScoreNum == 3 || leftScoreNum == 6 || leftScoreNum == 9)
+                {
+                    rightHandPower++;
+                    Debug.Log($" Right Hand Power: " + rightHandPower);
+                }
+                leftHand.position = new Vector3(-4.12f, 26.9f, -20.6f);
+                leftHand.rotation = rotationLpre;
                 ballPos.position = new Vector3(0f, 0f, 0f);
                 Vector3 force = new Vector3(Random.Range(3f, 5f), 0f, Random.Range(3f, 5f));
                 ball.linearVelocity = force * ballSpeed;
