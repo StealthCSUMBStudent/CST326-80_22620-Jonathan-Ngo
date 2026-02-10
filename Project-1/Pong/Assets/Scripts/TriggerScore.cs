@@ -19,6 +19,7 @@ public class TriggerScore : MonoBehaviour
     public AudioClip winnerL;
     public AudioClip winnerR;
     AudioSource audioSource;
+    Color red = new Color(255f,0f,0f);
 
     //ScorezoneForLeftToScore
     //ScorezoneForRightToScore
@@ -32,6 +33,8 @@ public class TriggerScore : MonoBehaviour
     {
         leftScoreNum = 0;
         rightScoreNum = 0;
+        leftText.color = Color.white;
+        rightText.color = Color.white;
     }
     // Update is called once per frame
     void Update()
@@ -50,6 +53,8 @@ public class TriggerScore : MonoBehaviour
             {
                 leftScoreNum = 0; //ensure score goes back to 0 since a "scoring" still occurs, if this was set to 0, it would become 1!
                 rightScoreNum = 0;
+                leftText.color = Color.white;
+                rightText.color = Color.white;
                 Debug.Log($" Game Over, Right Paddle Wins");
                 audioSource.PlayOneShot(winnerR);
                 ballPos.position = new Vector3(0f, 0f, 0f);
@@ -68,6 +73,15 @@ public class TriggerScore : MonoBehaviour
                 if (rightScoreNum > 9)
                 {
                     audioSource.PlayOneShot(oneMoreR);
+                    rightText.color = Color.green;
+                }
+                if (rightScoreNum >= 3 && rightScoreNum <= 6)
+                {
+                    rightText.color = Color.red;
+                }
+                if (rightScoreNum >= 7 && rightScoreNum <= 8)
+                {
+                    rightText.color = Color.yellow;
                 }
                 ballPos.position = new Vector3(0f, 0f, 0f);
                 Vector3 force = new Vector3(Random.Range(-5f, -3f), 0f, Random.Range(-5f, -3f));
@@ -82,6 +96,8 @@ public class TriggerScore : MonoBehaviour
             {
                 rightScoreNum = 0; //ensure score goes back to 0 since a "scoring" still occurs, if this was set to 0, it would become 1!
                 leftScoreNum = 0;
+                leftText.color = Color.white;
+                rightText.color = Color.white;
                 Debug.Log($" Game Over, Left Paddle Wins");
                 audioSource.PlayOneShot(winnerL);
                 ballPos.position = new Vector3(0f, 0f, 0f);
@@ -100,6 +116,15 @@ public class TriggerScore : MonoBehaviour
                 if (leftScoreNum > 9)
                 {
                     audioSource.PlayOneShot(oneMoreL);
+                    leftText.color = Color.green;
+                }
+                if (leftScoreNum >= 3 && leftScoreNum <= 6)
+                {
+                    leftText.color = Color.red;
+                }
+                if (leftScoreNum >= 7 && leftScoreNum <= 8)
+                {
+                    leftText.color = Color.yellow;
                 }
                 ballPos.position = new Vector3(0f, 0f, 0f);
                 Vector3 force = new Vector3(Random.Range(3f, 5f), 0f, Random.Range(3f, 5f));
