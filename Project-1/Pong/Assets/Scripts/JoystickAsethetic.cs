@@ -20,6 +20,7 @@ public class JoystickAsethetic : MonoBehaviour
         if (Keyboard.current.wKey.isPressed)
         {
             JoystickL.Rotate(_rotationSpeed * Time.deltaTime,0f,0f);
+            //Mathf.Max(90f,122f);
 
         }
 
