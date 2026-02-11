@@ -43,6 +43,7 @@ public class TriggerScore : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //reset everything
         leftHandPower = 0;
         rightHandPower = 0;
         leftScoreNum = 0;
@@ -90,9 +91,9 @@ public class TriggerScore : MonoBehaviour
         {
             if (rightScoreNum > 9)
             {
-                leftScoreNum = 0; //ensure score goes back to 0 since a "scoring" still occurs, if this was set to 0, it would become 1!
+                leftScoreNum = 0; //ensure score goes back to 0 since a "scoring" still occurs!
                 rightScoreNum = 0;
-                leftHandPower = 0;
+                leftHandPower = 0; // powerup recharge
                 rightHandPower = 0;
                 leftText.color = Color.white;
                 rightText.color = Color.white;

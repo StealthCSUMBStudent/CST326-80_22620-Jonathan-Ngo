@@ -11,6 +11,7 @@ public class BallScript : MonoBehaviour
     public int randomNum;
     public AudioClip boing;
     AudioSource audioSource;
+    public AudioClip speedUp;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Awake()
@@ -62,9 +63,13 @@ public class BallScript : MonoBehaviour
             Vector3 force = new Vector3(Random.Range(1f, 2f), 0f, Random.Range(0.5f, 1f));
             //audioSource.clip = boing;
             //audioSource.Play();
-            if (collision.gameObject.CompareTag("Left Paddle"))
+            if (collision.gameObject.CompareTag("Left Paddle") && speed != 6.5f)
             {
                 audioSource.PlayOneShot(boing);
+            }
+            if (speed == 6.5f)
+            {
+                audioSource.PlayOneShot(speedUp);
             }
             ball.linearVelocity = (ballSpeed * force) * speed;
             changeTime = Time.time;
@@ -77,9 +82,13 @@ public class BallScript : MonoBehaviour
             Vector3 force = new Vector3(Random.Range(-2f, -1f), 0f, Random.Range(-1f, -0.5f));
             //audioSource.clip = boing;
             //audioSource.Play();
-            if (collision.gameObject.CompareTag("Right Paddle"))
+            if (collision.gameObject.CompareTag("Right Paddle") && speed != 6.5f)
             {
                 audioSource.PlayOneShot(boing);
+            }
+            if (speed == 6.5f)
+            {
+                audioSource.PlayOneShot(speedUp);
             }
             ball.linearVelocity = (ballSpeed * force) * speed;
             changeTime = Time.time;
