@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 313006387453715607}
   m_Layer: 0
   m_Name: Gold_block
-  m_TagString: Untagged
+  m_TagString: CoinBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

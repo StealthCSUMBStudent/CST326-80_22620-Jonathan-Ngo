@@ -1,7 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 /*
  * This script is responsible for reading a level layout from a text file and constructing the level
  * in a Unity scene by instantiating block GameObjects. The level file should be placed in the
@@ -39,26 +40,68 @@ public class LevelParser : MonoBehaviour
     public GameObject brickPrefab;
     public GameObject questionBoxPrefab;
     public GameObject strongPrefab;
-
+    public Camera rayCamera;
+    public TextMeshProUGUI coinText;
+    public int coinCount;
     void Start()
     {
         LoadLevel();
+        coinCount = 00;
     }
 
     void Update()
     {
         if (Keyboard.current.rKey.wasPressedThisFrame)
             ReloadLevel();
+        Vector3 mousePosition = Mouse.current.position.value;
+        Ray screenRay = rayCamera.ScreenPointToRay(mousePosition);
+        if (Physics.Raycast(screenRay, out RaycastHit screenhitInfo))
+        {
+            Debug.DrawLine(screenRay.origin, screenhitInfo.point, Color.blueViolet);
+            if (Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                if (screenhitInfo.collider.CompareTag("Brick"))
+                {
+                    //debugSphere.position = screenhitInfo.point;
+                    Destroy(screenhitInfo.collider.gameObject);
+                }
+                if (screenhitInfo.collider.CompareTag("CoinBlock"))
+                {
+                    //debugSphere.position = screenhitInfo.point;
+                    coinCount++;
+                    if (coinCount < 10)
+                    {
+                        coinText.text = $"\nx0" + ((int)coinCount).ToString();
+                    } else
+                    {
+                        coinText.text = $"\nx" + ((int)coinCount).ToString();
+                    }
+                }
+            }
+        }
+        /*
+         * public TextMeshProUGUI timeText;
+         *         timeText.text = $"TIME:\n" + ((int)timeLeft).ToString();
+        if (Time.time > changeTime + 1)
+        {
+            timeLeft--;
+            changeTime = Time.time;
+        }
+         */
     }
 
     void LoadLevel()
     {
+        Vector3 mousePosition = Mouse.current.position.value;
+        Ray screenRay = rayCamera.ScreenPointToRay(mousePosition);
         // Push lines onto a stack so we can pop bottom-up rows. This is easy to reason
         //  about, but an index-based loop over the string array is faster.
         Stack<string> levelRows = new Stack<string>();
 
         foreach (string line in levelFile.text.Split('\n'))
             levelRows.Push(line);
+
+
 
         int row = 0;
         while (levelRows.Count > 0)
