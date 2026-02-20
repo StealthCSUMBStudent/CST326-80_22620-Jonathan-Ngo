@@ -924,10 +924,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: acd66adf-485b-4fa0-8e63-caec2e78b483
+  cloudProjectId: 54e304e0-fb48-4225-a6fa-43500e73f317
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Mario
+  projectName: MarioFull
   organizationId: jongo_unity
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
