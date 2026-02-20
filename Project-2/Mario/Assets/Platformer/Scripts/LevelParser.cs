@@ -43,6 +43,12 @@ public class LevelParser : MonoBehaviour
     public Camera rayCamera;
     public TextMeshProUGUI coinText;
     public int coinCount;
+    public AudioClip breakSound;
+    AudioSource audioSource;
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     void Start()
     {
         LoadLevel();
@@ -64,6 +70,7 @@ public class LevelParser : MonoBehaviour
                 {
                     //debugSphere.position = screenhitInfo.point;
                     Destroy(screenhitInfo.collider.gameObject);
+                    audioSource.PlayOneShot(breakSound);
                 }
                 if (screenhitInfo.collider.CompareTag("CoinBlock"))
                 {
