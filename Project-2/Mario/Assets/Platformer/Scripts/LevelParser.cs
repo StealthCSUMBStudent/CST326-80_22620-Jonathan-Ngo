@@ -40,6 +40,8 @@ public class LevelParser : MonoBehaviour
     public GameObject brickPrefab;
     public GameObject questionBoxPrefab;
     public GameObject strongPrefab;
+    public GameObject waterPrefab;
+    public GameObject goalPrefab;
     public Camera rayCamera;
     public TextMeshProUGUI coinText;
     public int coinCount;
@@ -148,6 +150,18 @@ public class LevelParser : MonoBehaviour
                     Transform rockInstance = Instantiate(strongPrefab).transform;
                     rockInstance.position = position;
                 }
+                if (currentChar == 'w')
+                {
+                    Vector3 position = new Vector3(columnIndex + 0.5f, row + 0.5f, 0);
+                    Transform rockInstance = Instantiate(waterPrefab).transform;
+                    rockInstance.position = position;
+                }
+                if (currentChar == 'g')
+                {
+                    Vector3 position = new Vector3(columnIndex + 0.5f, row + 0.5f, 0);
+                    Transform rockInstance = Instantiate(goalPrefab).transform;
+                    rockInstance.position = position;
+                }
 
 
 
@@ -158,7 +172,7 @@ public class LevelParser : MonoBehaviour
     }
 
     // --------------------------------------------------------------------------
-    void ReloadLevel()
+    public void ReloadLevel()
     {
         foreach (Transform child in levelRoot)
            Destroy(child.gameObject);

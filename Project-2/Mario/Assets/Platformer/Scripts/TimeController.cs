@@ -6,8 +6,8 @@ using System.Collections;
 public class TimeController : MonoBehaviour
 {
     public TextMeshProUGUI timeText;
-
-    int timeLeft = 500;
+    bool timeUpStatus = false;
+    int timeLeft = 100;
     float changeTime = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,10 +19,15 @@ public class TimeController : MonoBehaviour
     void Update()
     {
         timeText.text = $"TIME:\n" + ((int)timeLeft).ToString();
-        if (Time.time > changeTime + 1)
+        if (Time.time > changeTime + 1 && timeLeft != 0)
         {
             timeLeft--;
             changeTime = Time.time;
+        }
+        if (timeLeft == 0 && !timeUpStatus)
+        {
+            Debug.Log("TIMES UP!");
+            timeUpStatus = true;
         }
     }
     IEnumerator LearnAboutCouratine()

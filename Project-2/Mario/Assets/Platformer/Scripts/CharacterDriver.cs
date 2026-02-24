@@ -1,5 +1,8 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
+using static UnityEngine.UI.Image;
 
 public class CharacterDriver : MonoBehaviour
 {
@@ -9,16 +12,34 @@ public class CharacterDriver : MonoBehaviour
 
     public float apexHeight = 4.5f;
     public float apexTime = 0.5f;
-
     Vector2 _velocity;
     CharacterController _controller;
+    Animator _animator;
     Quaternion facingRight;
     Quaternion facingLeft;
+    [Header("Prefabs")]
+    public LevelParser resetter;
+    public Camera rayCamera;
+    public Camera mainCam;
+    public TextMeshProUGUI coinText;
+    public TextMeshProUGUI scoreText;
+    public int scoreCount;
+    public int coinCount;
+    public AudioClip breakSound;
+    AudioSource audioSource;
+    float changeTime = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    void Awake()
+    {
+        //_controller = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+    }
     void Start()
     {
-        facingRight = Quaternion.identity;
-        facingLeft = Quaternion.Euler(0f,180f,0f) ;
+        facingRight = Quaternion.Euler(0f, 90f, 0f);
+        facingLeft = Quaternion.Euler(0f,-90f,0f) ;
         _controller = GetComponent<CharacterController>();
     }
 
@@ -36,21 +57,19 @@ public class CharacterDriver : MonoBehaviour
         }
         bool jumpPressedThisFrame = Keyboard.current.spaceKey.wasPressedThisFrame;
         bool jumpHeld = Keyboard.current.spaceKey.isPressed;
-
         float gravityModifier = 1f;
-
-        if (_controller.isGrounded) {
-            if (direction != 0)
-            {
-                if (Mathf.Sign(direction) != Mathf.Sign(_velocity.x))
+            if (_controller.isGrounded) {
+                if (direction != 0)
                 {
-                    _velocity.x = 0f;
-                }
-                _velocity.x += direction * groundAcceleration * Time.deltaTime;
-                _velocity.x = Mathf.Clamp(_velocity.x, -walkSpeed, walkSpeed);
+                    if (Mathf.Sign(direction) != Mathf.Sign(_velocity.x))
+                    {
+                        _velocity.x = 0f;
+                    }
+                    _velocity.x += direction * groundAcceleration * Time.deltaTime;
+                    _velocity.x = Mathf.Clamp(_velocity.x, -walkSpeed, walkSpeed);
 
-                transform.rotation = (direction > 0f) ? facingRight : facingLeft;
-            }
+                    transform.rotation = (direction > 0f) ? facingRight : facingLeft;
+                }
             else
             {
                 //_velocity.x *= 1f - Time.deltaTime * 2f;
@@ -84,9 +103,73 @@ public class CharacterDriver : MonoBehaviour
 
         if ((collisions & CollisionFlags.CollidedAbove) != 0)
         {
+            Debug.Log("CEILING HIT");
+            Vector3 characterPosition = Mouse.current.position.value;
+            Ray screenRay = new Ray(characterPosition, Vector3.up);
+            if (Physics.Raycast(screenRay, out RaycastHit screenhitInfo))
+            {
+               // Debug.DrawLine(screenRay.origin, screenhitInfo.point, Color.blueViolet);
+                if (screenhitInfo.collider.CompareTag("Brick"))
+                {
+                    //debugSphere.position = screenhitInfo.point;
+                    Destroy(screenhitInfo.collider.gameObject);
+                    audioSource.PlayOneShot(breakSound);
+                    scoreCount = scoreCount + 100;
+                    //000000
+                    //1000
+                    //10000
+                    //100000
+                    if (scoreCount < 1000)
+                    {
+                        scoreText.text = $"MARIO\n 000" + ((int)scoreCount).ToString();
+                    }
+                    else if (scoreCount < 10000 && scoreCount >= 1000)
+                    {
+                        scoreText.text = $"MARIO\n 00" + ((int)scoreCount).ToString();
+                    }
+                    else if (scoreCount < 1000000 && scoreCount >= 10000)
+                    {
+                        scoreText.text = $"MARIO\n 0" + ((int)scoreCount).ToString();
+                    }
+                        _velocity.y = -1f;
+                    }
+                if (screenhitInfo.collider.CompareTag("CoinBlock"))
+                {
+                    //debugSphere.position = screenhitInfo.point;
+                    coinCount++;
+                    scoreCount = scoreCount + 100;
+                    //000000
+                    //1000
+                    //10000
+                    //100000
+                    if (scoreCount < 1000)
+                    {
+                        scoreText.text = $"MARIO\n 000" + ((int)scoreCount).ToString();
+                    }
+                    else if (scoreCount < 10000 && scoreCount >= 1000)
+                    {
+                        scoreText.text = $"MARIO\n 00" + ((int)scoreCount).ToString();
+                    }
+                    else if (scoreCount < 1000000 && scoreCount >= 10000)
+                    {
+                        scoreText.text = $"MARIO\n 0" + ((int)scoreCount).ToString();
+                    }
+                }
+                if (screenhitInfo.collider.CompareTag("Water"))
+                {
+                    //debugSphere.position = screenhitInfo.point;
+                    resetter.ReloadLevel();
+                    _controller.transform.position = new Vector3(11.01f, 2f, 0f);
+                    mainCam.transform.position = new Vector3(16.15f, 7.5f, -11.5f);
+                }
+                if (screenhitInfo.collider.CompareTag("Goal"))
+                {
+                    //debugSphere.position = screenhitInfo.point;
+                    Debug.Log("Success!");
+                }
+            }
             _velocity.y = -1f;
-            //_velocity.x = 0f;
-            
+
         }
 
         if ((collisions & CollisionFlags.CollidedSides) != 0)
@@ -94,6 +177,8 @@ public class CharacterDriver : MonoBehaviour
             _velocity.x = 0f;
         }
 
+        _animator.SetFloat("Speed", Mathf.Abs(_velocity.x));
+        _animator.SetBool("Grounded", _controller.isGrounded);
         //Debug.Log($"Grounded: " + _controller.isGrounded);
     }
 }

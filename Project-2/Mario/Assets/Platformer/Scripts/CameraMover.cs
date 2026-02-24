@@ -16,7 +16,7 @@ public class CameraMover : MonoBehaviour
     {
         if (Keyboard.current.rightArrowKey.isPressed)
         {
-            Vector3 force = new Vector3(2f, 0f, 0f);
+            Vector3 force = new Vector3(4.5f, 0f, 0f);
             camMoverRigid.linearVelocity = force;
         }
         else if (!Keyboard.current.rightArrowKey.isPressed)
@@ -27,7 +27,7 @@ public class CameraMover : MonoBehaviour
         
         if (Keyboard.current.leftArrowKey.isPressed)
         {
-            Vector3 force = new Vector3(-2f, 0f, 0f);
+            Vector3 force = new Vector3(-4.5f, 0f, 0f);
             camMoverRigid.linearVelocity = force;
         }
         
