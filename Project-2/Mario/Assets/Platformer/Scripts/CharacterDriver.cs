@@ -104,7 +104,7 @@ public class CharacterDriver : MonoBehaviour
         if ((collisions & CollisionFlags.CollidedAbove) != 0)
         {
             Debug.Log("CEILING HIT");
-            Vector3 characterPosition = Mouse.current.position.value;
+            Vector3 characterPosition = new Vector3(_controller.transform.position.x, _controller.transform.position.y, _controller.transform.position.z);
             Ray screenRay = new Ray(characterPosition, Vector3.up);
             if (Physics.Raycast(screenRay, out RaycastHit screenhitInfo))
             {
@@ -137,6 +137,20 @@ public class CharacterDriver : MonoBehaviour
                 {
                     //debugSphere.position = screenhitInfo.point;
                     coinCount++;
+                    if (coinCount < 10)
+                    {
+                        coinText.text = $"\nx0" + ((int)coinCount).ToString();
+                    }
+                    else
+                    {
+                        coinText.text = $"\nx" + ((int)coinCount).ToString();
+                    }
+                    if (coinCount == 25)
+                    {
+                        scoreCount = scoreCount + 1000;
+                        coinCount = 0;
+                        coinText.text = $"\nx00";
+                    }
                     scoreCount = scoreCount + 100;
                     //000000
                     //1000
@@ -158,6 +172,7 @@ public class CharacterDriver : MonoBehaviour
                 if (screenhitInfo.collider.CompareTag("Water"))
                 {
                     //debugSphere.position = screenhitInfo.point;
+                    Debug.Log("Ouch!");
                     resetter.ReloadLevel();
                     _controller.transform.position = new Vector3(11.01f, 2f, 0f);
                     mainCam.transform.position = new Vector3(16.15f, 7.5f, -11.5f);
@@ -171,14 +186,52 @@ public class CharacterDriver : MonoBehaviour
             _velocity.y = -1f;
 
         }
-
+        if ((collisions & CollisionFlags.Below) != 0)
+        {
+            
+            Vector3 characterPosition = new Vector3(_controller.transform.position.x, _controller.transform.position.y, _controller.transform.position.z);
+            Ray screenRay = new Ray(characterPosition, Vector3.up);
+            if (Physics.Raycast(screenRay, out RaycastHit screenhitInfo))
+            {
+                if (screenhitInfo.collider.CompareTag("Water"))
+                {
+                    //debugSphere.position = screenhitInfo.point;
+                    Debug.Log("Ouch!");
+                    resetter.ReloadLevel();
+                    _controller.transform.position = new Vector3(11.01f, 2f, 0f);
+                    mainCam.transform.position = new Vector3(16.15f, 7.5f, -11.5f);
+                }
+            }
+            _velocity.y = -1f;
+        }
         if ((collisions & CollisionFlags.CollidedSides) != 0)
         {
             _velocity.x = 0f;
+            Vector3 characterPosition = new Vector3(_controller.transform.position.x, _controller.transform.position.y, _controller.transform.position.z);
+            Ray screenRay = new Ray(characterPosition, Vector3.up);
+            if (Physics.Raycast(screenRay, out RaycastHit screenhitInfo))
+            {
+                if (screenhitInfo.collider.CompareTag("Goal"))
+                {
+                    //debugSphere.position = screenhitInfo.point;
+                    Debug.Log("Success!");
+                }
+            }
         }
 
         _animator.SetFloat("Speed", Mathf.Abs(_velocity.x));
         _animator.SetBool("Grounded", _controller.isGrounded);
         //Debug.Log($"Grounded: " + _controller.isGrounded);
+    }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.CompareTag("Water"))
+        {
+            //debugSphere.position = screenhitInfo.point;
+            Debug.Log("Ouch!");
+            resetter.ReloadLevel();
+            _controller.transform.position = new Vector3(11.01f, 2f, 0f);
+            mainCam.transform.position = new Vector3(16.15f, 7.5f, -11.5f);
+        }
     }
 }
