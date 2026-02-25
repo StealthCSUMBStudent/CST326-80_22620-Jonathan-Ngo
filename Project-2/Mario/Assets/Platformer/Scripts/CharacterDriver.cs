@@ -145,7 +145,7 @@ public class CharacterDriver : MonoBehaviour
                     {
                         coinText.text = $"\nx" + ((int)coinCount).ToString();
                     }
-                    if (coinCount == 25)
+                    if (coinCount == 100)
                     {
                         scoreCount = scoreCount + 1000;
                         coinCount = 0;
