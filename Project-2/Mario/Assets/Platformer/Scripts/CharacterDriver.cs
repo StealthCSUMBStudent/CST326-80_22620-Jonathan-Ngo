@@ -145,7 +145,7 @@ public class CharacterDriver : MonoBehaviour
                     {
                         coinText.text = $"\nx" + ((int)coinCount).ToString();
                     }
-                    if (coinCount == 25)
+                    if (coinCount == 100)
                     {
                         scoreCount = scoreCount + 1000;
                         coinCount = 0;
@@ -206,7 +206,7 @@ public class CharacterDriver : MonoBehaviour
         }
         if ((collisions & CollisionFlags.CollidedSides) != 0)
         {
-            _velocity.x = 0f;
+            //_velocity.x = 0f;
             Vector3 characterPosition = new Vector3(_controller.transform.position.x, _controller.transform.position.y, _controller.transform.position.z);
             Ray screenRay = new Ray(characterPosition, Vector3.up);
             if (Physics.Raycast(screenRay, out RaycastHit screenhitInfo))
@@ -230,8 +230,13 @@ public class CharacterDriver : MonoBehaviour
             //debugSphere.position = screenhitInfo.point;
             Debug.Log("Ouch!");
             resetter.ReloadLevel();
-            _controller.transform.position = new Vector3(11.01f, 2f, 0f);
+            _controller.transform.position = new Vector3(11.01f, 5f, 0f);
             mainCam.transform.position = new Vector3(16.15f, 7.5f, -11.5f);
+        }
+        if (hit.collider.CompareTag("Goal"))
+        {
+            //debugSphere.position = screenhitInfo.point;
+            Debug.Log("Success!");
         }
     }
 }
