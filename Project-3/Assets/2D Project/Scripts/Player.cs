@@ -5,13 +5,21 @@ public class Player : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform shootOffsetTransform;
-
+    private Rigidbody2D rb;
+    private float movementX;
+    private float movementY;
+    public float moveSpeed = 5f;
     void Start()
     {
         // todo - get and cache animator
-
+        rb = GetComponent<Rigidbody2D>();
     }
-    
+
+    private void FixedUpdate()
+    {
+        Vector2 movement = new Vector2(movementX, movementY);
+        rb.linearVelocity = movement * moveSpeed;
+    }
     void Update()
     {
         if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
@@ -23,6 +31,14 @@ public class Player : MonoBehaviour
 
             Destroy(shot, 3f);
             // todo - trigger shoot animation
+            GetComponent<Animator>().SetTrigger("Shot Trigger");
         }
+    }
+
+    void OnMove(InputValue movementValue)
+    {
+        Vector2 movementVector = movementValue.Get<Vector2>();
+        movementX = movementVector.x;
+        movementY = movementVector.y;
     }
 }
