@@ -7,7 +7,14 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        GetComponent<Rigidbody2D>().linearVelocity = Vector2.up * speed;
-        Debug.Log("Wwweeeeee");
+        //Debug.Log("Wwweeeeee");
+        if (gameObject.CompareTag("EnemyBullet"))
+        {
+            GetComponent<Rigidbody2D>().linearVelocity = Vector2.down * speed;
+        }
+        if (gameObject.CompareTag("PlayerBullet"))
+        {
+            GetComponent<Rigidbody2D>().linearVelocity = Vector2.up * speed;
+        }
     }
 }

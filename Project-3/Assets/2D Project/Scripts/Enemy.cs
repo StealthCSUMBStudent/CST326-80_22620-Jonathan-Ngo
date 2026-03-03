@@ -4,14 +4,16 @@ public class Enemy : MonoBehaviour
 {
     public delegate void EnemyDiedFunc(float points);
     public static event EnemyDiedFunc OnEnemyDied;
-
+    public GameObject bulletPrefab;
+    public Transform shootOffsetTransform;
     public AudioClip tic;
     public AudioClip tac;
     AudioSource audioSource;
+    float changeTime = 0;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Ouch!");
+        //Debug.Log("Ouch!");
 
         // todo - destroy the bullet
         if (collision.gameObject.layer == LayerMask.NameToLayer("Bullet"))
@@ -33,10 +35,27 @@ public class Enemy : MonoBehaviour
                 Debug.Log("Higher Enemy Defeated");
                 OnEnemyDied.Invoke(30);
             }
+            if (gameObject.CompareTag("MotherShip"))
+            {
+                Debug.Log("Mothership Defeated");
+                OnEnemyDied.Invoke(250);
+            }
         }
         // todo - trigger death animation
     }
 
+    public void Update()
+    {
+        if (gameObject.CompareTag("HighEnemy"))
+        {
+            if (Time.time > changeTime + 5)
+            {
+                GameObject shot = Instantiate(bulletPrefab, shootOffsetTransform.position, Quaternion.identity);
+                Destroy(shot, 3f);
+                changeTime = Time.time;
+            }
+        }
+    }
     public void PlayTickSound()
     {
         //Debug.Log("Tic");

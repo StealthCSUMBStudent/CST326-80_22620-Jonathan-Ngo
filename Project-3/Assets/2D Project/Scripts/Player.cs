@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     public GameObject bulletPrefab;
+    public delegate void PlayerDiedFunc();
+    public static event PlayerDiedFunc OnPlayerDied;
     public Transform shootOffsetTransform;
     private Rigidbody2D rb;
     private float movementX;
@@ -34,8 +36,15 @@ public class Player : MonoBehaviour
             GetComponent<Animator>().SetTrigger("Shot Trigger");
         }
     }
-
-    void OnMove(InputValue movementValue)
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("EnemyBullet"))
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+    }
+        void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
         movementX = movementVector.x;
