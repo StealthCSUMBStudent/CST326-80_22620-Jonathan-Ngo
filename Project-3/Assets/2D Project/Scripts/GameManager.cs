@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,10 +13,14 @@ public class GameManager : MonoBehaviour
     {
         // todo - sign up for notification about enemy death 
         Enemy.OnEnemyDied += OnEnemyDied;
+        Barrier.OnBarrierGone += OnBarrierGone;
+        Player.OnPlayerDied += OnPlayerDied;
     }
     private void OnDestroy()
     {
         Enemy.OnEnemyDied -= OnEnemyDied;
+        Barrier.OnBarrierGone -= OnBarrierGone;
+        Player.OnPlayerDied -= OnPlayerDied;
     }
     void OnEnemyDied(float score)
     {
@@ -50,6 +55,11 @@ public class GameManager : MonoBehaviour
             scoreText.text = $"SCORE\n" + ((int)scoreOverall).ToString();
         }
     }
+
+    void OnBarrierGone()
+    {
+        Debug.Log($"The barrier has been destroyed");
+    }
     void Update()
     {
         if (Keyboard.current.rKey.isPressed)
@@ -60,6 +70,6 @@ public class GameManager : MonoBehaviour
     }
     void OnPlayerDied()
     {
-
+        Debug.Log($"The Player has died.");
     }
 }

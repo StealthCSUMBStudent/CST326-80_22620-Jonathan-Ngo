@@ -38,11 +38,16 @@ public class Player : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("EnemyBullet"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Bullet"))
         {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
+            if (collision.gameObject.CompareTag("EnemyBullet"))
+            {
+                Destroy(collision.gameObject);
+                Destroy(gameObject);
+                OnPlayerDied.Invoke();
+            }
         }
+
     }
         void OnMove(InputValue movementValue)
     {

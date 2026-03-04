@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     float changeTime = 0;
     public float enemySpeed = 0.5f;
     public int enemyCount = 3;
+    public EnemyMovement blast;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -28,16 +29,22 @@ public class Enemy : MonoBehaviour
             {
                 Debug.Log("Weak Enemy Defeated");
                 OnEnemyDied.Invoke(10);
+                EnemyMovement.modifierTime -= 0.15f;
+                Debug.Log("NEW TIME SPEED: " + EnemyMovement.modifierTime);
             }
             if (gameObject.CompareTag("MidEnemy"))
             {
                 Debug.Log("Middle Enemy Defeated");
                 OnEnemyDied.Invoke(20);
+                EnemyMovement.modifierTime -= 0.15f;
+                Debug.Log("NEW TIME SPEED: " + EnemyMovement.modifierTime);
             }
             if (gameObject.CompareTag("HighEnemy"))
             {
                 Debug.Log("Higher Enemy Defeated");
                 OnEnemyDied.Invoke(30);
+                EnemyMovement.modifierTime -= 0.15f;
+                Debug.Log("NEW TIME SPEED: " + EnemyMovement.modifierTime);
             }
             if (gameObject.CompareTag("MotherShip"))
             {
