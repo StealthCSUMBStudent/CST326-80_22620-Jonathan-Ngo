@@ -1350,7 +1350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6628956833067816830, guid: 37d6293e1a9e1294da637c8c5d07fa1f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1515,48 +1515,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8059492754622023115, guid: 7ad81f6780c8d3e4d92c34ec566feb77, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6307056904777670166}
-    - targetCorrespondingSourceObject: {fileID: 5432812502083168422, guid: 7ad81f6780c8d3e4d92c34ec566feb77, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6307056904777670165}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ad81f6780c8d3e4d92c34ec566feb77, type: 3}
---- !u!1 &6307056904777670163 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5432812502083168422, guid: 7ad81f6780c8d3e4d92c34ec566feb77, type: 3}
-  m_PrefabInstance: {fileID: 6307056904777670162}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6307056904777670164 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8059492754622023115, guid: 7ad81f6780c8d3e4d92c34ec566feb77, type: 3}
-  m_PrefabInstance: {fileID: 6307056904777670162}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6307056904777670165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6307056904777670163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e447fef933ad9846abe6f19538623e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationSpeed
---- !u!114 &6307056904777670166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6307056904777670164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e447fef933ad9846abe6f19538623e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationSpeed
 --- !u!61 &8228346687189939977
 BoxCollider2D:
   m_ObjectHideFlags: 0

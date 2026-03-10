@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7820868562458443828}
   - component: {fileID: 1939241147324703373}
   - component: {fileID: -6391747265888413848}
+  - component: {fileID: -5444232146154972496}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: LowerEnemy
@@ -103,6 +104,7 @@ MonoBehaviour:
   moveCount: 0
   enemySpeed: 0.5
   enemyCount: 3
+  blast: {fileID: 0}
 --- !u!212 &8702862494841671563
 SpriteRenderer:
   serializedVersion: 2
@@ -296,3 +298,15 @@ MonoBehaviour:
   moveCount: 0
   enemySpeed: 0.5
   enemyCount: 3
+--- !u!114 &-5444232146154972496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7786942725381569355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e447fef933ad9846abe6f19538623e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationSpeed

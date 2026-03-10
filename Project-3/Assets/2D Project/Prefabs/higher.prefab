@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8291095407264986583}
   - component: {fileID: 7615241610309671898}
   - component: {fileID: 3623547012264575528}
+  - component: {fileID: -6858270372449594357}
   m_Layer: 0
   m_Name: higher
   m_TagString: HighEnemy
@@ -104,6 +105,7 @@ MonoBehaviour:
   moveCount: 0
   enemySpeed: 0.5
   enemyCount: 3
+  blast: {fileID: 0}
 --- !u!212 &6903531642580754803
 SpriteRenderer:
   serializedVersion: 2
@@ -297,6 +299,18 @@ MonoBehaviour:
   moveCount: 0
   enemySpeed: 0.5
   enemyCount: 3
+--- !u!114 &-6858270372449594357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788585783754925480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e447fef933ad9846abe6f19538623e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationSpeed
 --- !u!1 &4130147242217187768
 GameObject:
   m_ObjectHideFlags: 0
