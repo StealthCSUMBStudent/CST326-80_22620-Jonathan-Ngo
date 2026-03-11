@@ -11,10 +11,12 @@ public class Player : MonoBehaviour
     private float movementX;
     private float movementY;
     public float moveSpeed = 5f;
+    private Animator anim;
     void Start()
     {
         // todo - get and cache animator
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -43,7 +45,8 @@ public class Player : MonoBehaviour
             if (collision.gameObject.CompareTag("EnemyBullet"))
             {
                 Destroy(collision.gameObject);
-                Destroy(gameObject);
+                anim.SetTrigger("EnemyDestroyed");
+                Destroy(gameObject, 1f);
                 OnPlayerDied.Invoke();
             }
         }

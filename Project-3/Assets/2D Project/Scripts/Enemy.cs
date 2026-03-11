@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
@@ -15,6 +16,15 @@ public class Enemy : MonoBehaviour
     public float enemySpeed = 0.5f;
     public int enemyCount = 3;
     public EnemyMovement blast;
+    private Animator anim;
+    private SpriteRenderer sr;
+    public int enemyLeft = 3;
+
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -24,13 +34,16 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Bullet"))
         {
             Destroy(collision.gameObject);
-            Destroy(gameObject);
+            // todo - trigger death animation
+            anim.SetTrigger("EnemyDestroyed");
+            Destroy(gameObject,1f);
             if (gameObject.CompareTag("LowerEnemy"))
             {
                 Debug.Log("Weak Enemy Defeated");
                 OnEnemyDied.Invoke(10);
                 EnemyMovement.modifierTime -= 0.15f;
                 Debug.Log("NEW TIME SPEED: " + EnemyMovement.modifierTime);
+                enemyLeft--;
             }
             if (gameObject.CompareTag("MidEnemy"))
             {
@@ -38,6 +51,7 @@ public class Enemy : MonoBehaviour
                 OnEnemyDied.Invoke(20);
                 EnemyMovement.modifierTime -= 0.15f;
                 Debug.Log("NEW TIME SPEED: " + EnemyMovement.modifierTime);
+                enemyLeft--;
             }
             if (gameObject.CompareTag("HighEnemy"))
             {
@@ -45,6 +59,7 @@ public class Enemy : MonoBehaviour
                 OnEnemyDied.Invoke(30);
                 EnemyMovement.modifierTime -= 0.15f;
                 Debug.Log("NEW TIME SPEED: " + EnemyMovement.modifierTime);
+                enemyLeft--;
             }
             if (gameObject.CompareTag("MotherShip"))
             {
@@ -52,9 +67,16 @@ public class Enemy : MonoBehaviour
                 OnEnemyDied.Invoke(250);
             }
         }
-        // todo - trigger death animation
+        
     }
+    private IEnumerator HandleDeathAnimation()
+    {
+        anim.SetTrigger("EnemyDestroyed");
 
+        yield return new WaitForSeconds(1.0f); 
+
+        Destroy(gameObject);
+    }
     public void Update()
     {
         if (gameObject.CompareTag("HighEnemy"))
