@@ -136,6 +136,8 @@ MonoBehaviour:
   enemySpeed: 0.5
   enemyCount: 3
   blast: {fileID: 375791617487050876}
+  enemyDeath: {fileID: 0}
+  enemyShoot: {fileID: 0}
 --- !u!212 &6764600317813913959
 SpriteRenderer:
   serializedVersion: 2
@@ -329,7 +331,6 @@ MonoBehaviour:
   moveCount: 0
   enemySpeed: 0.5
   enemyCount: 3
-  modifierTime: 0
 --- !u!1 &7579255407455123394
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +393,7 @@ Transform:
   m_GameObject: {fileID: 8059492754622023115}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -466,6 +467,8 @@ MonoBehaviour:
   enemySpeed: 0.5
   enemyCount: 3
   blast: {fileID: 1974690891996034788}
+  enemyDeath: {fileID: 0}
+  enemyShoot: {fileID: 0}
 --- !u!212 &8447255453187659939
 SpriteRenderer:
   serializedVersion: 2
@@ -659,7 +662,6 @@ MonoBehaviour:
   moveCount: 0
   enemySpeed: 0.5
   enemyCount: 3
-  modifierTime: 0
 --- !u!1 &8444466483106007134
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,7 +712,6 @@ MonoBehaviour:
   moveCount: 0
   enemySpeed: 0.5
   enemyCount: 3
-  modifierTime: 0.5
 --- !u!1 &8873652114975418107
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,7 +769,7 @@ PrefabInstance:
       objectReference: {fileID: -5193124476651785170, guid: 2451b4f6d77d26d47ad16ff203a892dc, type: 3}
     - target: {fileID: 4770429214757439301, guid: 58b7cbb050744794bb51656d8f3d9a6d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4770429214757439301, guid: 58b7cbb050744794bb51656d8f3d9a6d, type: 3}
       propertyPath: m_LocalPosition.y

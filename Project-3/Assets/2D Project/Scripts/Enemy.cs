@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -13,19 +14,25 @@ public class Enemy : MonoBehaviour
     public int moveCount = 0;
     AudioSource audioSource;
     float changeTime = 0;
+    float ShootTime = 0;
     public float enemySpeed = 0.5f;
     public int enemyCount = 3;
     public EnemyMovement blast;
     private Animator anim;
     private SpriteRenderer sr;
-    public int enemyLeft = 3;
+    public static int enemyLeft = 3;
+    public AudioClip enemyDeath;
+    public AudioClip enemyShoot;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
     }
-
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log("Ouch!");
@@ -35,6 +42,7 @@ public class Enemy : MonoBehaviour
         {
             Destroy(collision.gameObject);
             // todo - trigger death animation
+            audioSource.PlayOneShot(enemyDeath);
             anim.SetTrigger("EnemyDestroyed");
             Destroy(gameObject,1f);
             if (gameObject.CompareTag("LowerEnemy"))
@@ -67,7 +75,11 @@ public class Enemy : MonoBehaviour
                 OnEnemyDied.Invoke(250);
             }
         }
-        
+        Debug.Log("Enemies Left" + enemyLeft);
+        if (enemyLeft == 0)
+        {
+            StartCoroutine(LoadCredits(0.5f));
+        }
     }
     private IEnumerator HandleDeathAnimation()
     {
@@ -81,11 +93,13 @@ public class Enemy : MonoBehaviour
     {
         if (gameObject.CompareTag("HighEnemy"))
         {
-            if (Time.time > changeTime + 5)
+            if (Time.time > ShootTime + 5)
             {
                 GameObject shot = Instantiate(bulletPrefab, shootOffsetTransform.position, Quaternion.identity);
+                audioSource.PlayOneShot(enemyShoot);
                 Destroy(shot, 3f);
-                changeTime = Time.time;
+                ShootTime = Time.time;
+                GetComponent<Animator>().SetTrigger("Shot TriggerE");
             }
         }
     }
@@ -95,7 +109,12 @@ public class Enemy : MonoBehaviour
        
 
     }
-
+    IEnumerator LoadCredits(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        //Destroy(gameObject, 1f);
+        SceneManager.LoadScene("CreditScreen");
+    }
     public void PlayTacSound()
     {
         //Debug.Log("Tac");

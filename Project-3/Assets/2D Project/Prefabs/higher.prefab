@@ -106,6 +106,8 @@ MonoBehaviour:
   enemySpeed: 0.5
   enemyCount: 3
   blast: {fileID: 0}
+  enemyDeath: {fileID: 8300000, guid: 76fea9fb3c452cc4ab2147a6e91e9274, type: 3}
+  enemyShoot: {fileID: 8300000, guid: 5f5dc2be8b2361644ac931a83e910783, type: 3}
 --- !u!212 &6903531642580754803
 SpriteRenderer:
   serializedVersion: 2
