@@ -2,14 +2,36 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using System;
 public class Player : MonoBehaviour
 {
+    private static Player instance;
+    public static Player Instance // dont use private for this as a whole. only set
+    {
+        get; private set;
+        
+    }
+    public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
+    public class OnSelectedCounterChangedEventArgs : EventArgs
+    {
+        public ClearCounter selectedCounter;
+    }
+
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private GameInput gameInput;
     [SerializeField] private LayerMask countersLayerMask;
     private bool isWalking;
     private Vector3 lastInteractDir;
+    private ClearCounter selectedCounter;
 
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("There is more than 1 Player instance");
+        }
+        Instance = this;
+    }
     private void Start()
     {
         gameInput.OnInteractAction += GameInput_OnInteractAction;
@@ -17,25 +39,9 @@ public class Player : MonoBehaviour
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
     {
-        float interactDistance = 2f;
-        Vector3 interactDir = transform.forward; // always forward
-        /*
-        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance))
+        if (selectedCounter != null)
         {
-            Debug.Log(raycastHit.transform);
-        }
-        */
-        if (Physics.Raycast(transform.position + Vector3.up * 1f, interactDir, out RaycastHit hit, interactDistance))
-        {
-            if (hit.collider.gameObject.TryGetComponent(out ClearCounter clearCounter))
-            {
-                Debug.Log("Interacted");
-                clearCounter.Interact();
-            }
-            else
-            {
-                Debug.Log(hit.collider.gameObject);
-            }
+            selectedCounter.Interact();
         }
     }
     private void Update()
@@ -57,22 +63,27 @@ public class Player : MonoBehaviour
             lastInteractDir = moveDir;
         }
         float interactDistance = 2f;
-        Vector3 interactDir = transform.forward; // always forward
-        /*
-        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit,  interactDistance))
-        {
-            Debug.Log(raycastHit.transform);
-        }
-        */
-        if (Physics.Raycast(transform.position + Vector3.up * 1f, interactDir, out RaycastHit hit, interactDistance))
+        if (Physics.Raycast(transform.position ,lastInteractDir,out RaycastHit hit, interactDistance, countersLayerMask))
         {
             //Debug.Log(hit.transform);
             if (hit.transform.TryGetComponent(out ClearCounter clearCounter))
             {
-                Debug.Log("Interacted");
-                clearCounter.Interact();
+                //Debug.Log("Interacted");
+                //clearCounter.Interact();
+                if(clearCounter != selectedCounter)
+                {
+                    SetSelectedCounter(clearCounter);// = clearCounter;
+                }
+            } else
+            {
+                SetSelectedCounter(null); //null;
+
             }
+        } else
+        {
+            SetSelectedCounter(null);
         }
+        //Debug.Log(selectedCounter);
 
     }
     private void HandleMovement()
@@ -147,6 +158,15 @@ public class Player : MonoBehaviour
         float rotateSpeed = 10f;
         transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
 
-        //Debug.Log(inputVector);
+        //Debug.Log(inputVector)
+    }
+    private void SetSelectedCounter(ClearCounter selectedCounter)
+    {
+        this.selectedCounter = selectedCounter;
+
+        OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs
+        {
+            selectedCounter = selectedCounter
+        });
     }
 }
