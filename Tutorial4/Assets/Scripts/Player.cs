@@ -19,12 +19,22 @@ public class Player : MonoBehaviour
     {
         float interactDistance = 2f;
         Vector3 interactDir = transform.forward; // always forward
-
+        /*
+        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance))
+        {
+            Debug.Log(raycastHit.transform);
+        }
+        */
         if (Physics.Raycast(transform.position + Vector3.up * 1f, interactDir, out RaycastHit hit, interactDistance))
         {
-            if (hit.transform.TryGetComponent(out ClearCounter clearCounter))
+            if (hit.collider.gameObject.TryGetComponent(out ClearCounter clearCounter))
             {
+                Debug.Log("Interacted");
                 clearCounter.Interact();
+            }
+            else
+            {
+                Debug.Log(hit.collider.gameObject);
             }
         }
     }
@@ -47,12 +57,23 @@ public class Player : MonoBehaviour
             lastInteractDir = moveDir;
         }
         float interactDistance = 2f;
-
-       if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit,  interactDistance))
+        Vector3 interactDir = transform.forward; // always forward
+        /*
+        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit,  interactDistance))
         {
             Debug.Log(raycastHit.transform);
         }
-            
+        */
+        if (Physics.Raycast(transform.position + Vector3.up * 1f, interactDir, out RaycastHit hit, interactDistance))
+        {
+            //Debug.Log(hit.transform);
+            if (hit.transform.TryGetComponent(out ClearCounter clearCounter))
+            {
+                Debug.Log("Interacted");
+                clearCounter.Interact();
+            }
+        }
+
     }
     private void HandleMovement()
     {
