@@ -15,7 +15,7 @@ public class SelectedCounterVisual : MonoBehaviour
         //throw new System.NotImplementedException();
         if (e.selectedCounter == clearCounter)
         {
-            //Debug.Log("Hey");
+            Debug.Log("Hey");
             Show();
         } else
         {

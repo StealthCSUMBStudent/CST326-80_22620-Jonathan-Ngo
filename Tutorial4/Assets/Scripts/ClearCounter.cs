@@ -12,7 +12,8 @@ public class ClearCounter : MonoBehaviour
 
     private void Update()
     {
-        if (testing && Input.GetKeyDown(KeyCode.T)) //Input.GetKeyDown(KeyCode.T))
+        if (testing && Keyboard.current.tKey.wasPressedThisFrame) //Input.GetKeyDown(KeyCode.T)) 
+            //Keyboard.current.tKey.wasPressedThisFrame;
         {
             if (kitchenObject != null)
             {

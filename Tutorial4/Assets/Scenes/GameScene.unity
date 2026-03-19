@@ -211,10 +211,15 @@ PrefabInstance:
       propertyPath: kitchenObjectSo
       value: 
       objectReference: {fileID: 11400000, guid: eeb91a9aade069648a9701ffb83ee421, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3158851249273894377, guid: 309cb4fc34c13e942a0cf33b39d5212a, type: 3}
+    - {fileID: 8548864446355120772, guid: 309cb4fc34c13e942a0cf33b39d5212a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2689837767251561212, guid: 309cb4fc34c13e942a0cf33b39d5212a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1981376105}
   m_SourcePrefab: {fileID: 100100000, guid: 309cb4fc34c13e942a0cf33b39d5212a, type: 3}
 --- !u!1 &138782464
 GameObject:
@@ -705,6 +710,11 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &531859100 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2689837767251561212, guid: 309cb4fc34c13e942a0cf33b39d5212a, type: 3}
+  m_PrefabInstance: {fileID: 104198864}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &622106923 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6122909541548276742, guid: 309cb4fc34c13e942a0cf33b39d5212a, type: 3}
@@ -823,6 +833,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimator
   player: {fileID: 868317665}
+--- !u!1 &1243613173 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2689837767251561212, guid: 309cb4fc34c13e942a0cf33b39d5212a, type: 3}
+  m_PrefabInstance: {fileID: 5843290948437240821}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1243613176
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243613173}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1244371225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,12 +1092,33 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6861122214101327758, guid: 309cb4fc34c13e942a0cf33b39d5212a, type: 3}
   m_PrefabInstance: {fileID: 104198864}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 531859100}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7aa880ad299b0b04cba2bdf2c21b6fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClearCounter
+--- !u!65 &1981376105
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531859100}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!4 &2108152651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3294758251327466532, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
@@ -1088,9 +1145,21 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3158851249273894377, guid: 309cb4fc34c13e942a0cf33b39d5212a, type: 3}
+      propertyPath: testing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158851249273894377, guid: 309cb4fc34c13e942a0cf33b39d5212a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158851249273894377, guid: 309cb4fc34c13e942a0cf33b39d5212a, type: 3}
       propertyPath: tomatoPrefab
       value: 
       objectReference: {fileID: 5527095553978465442, guid: ce1d898bfa8501e4cba0a72ff81a0350, type: 3}
+    - target: {fileID: 3158851249273894377, guid: 309cb4fc34c13e942a0cf33b39d5212a, type: 3}
+      propertyPath: secondClearCounter
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4537320550376659412, guid: 309cb4fc34c13e942a0cf33b39d5212a, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -1155,10 +1224,15 @@ PrefabInstance:
       propertyPath: secondClearCounter
       value: 
       objectReference: {fileID: 1981376103}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8548864446355120772, guid: 309cb4fc34c13e942a0cf33b39d5212a, type: 3}
+    - {fileID: 3158851249273894377, guid: 309cb4fc34c13e942a0cf33b39d5212a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2689837767251561212, guid: 309cb4fc34c13e942a0cf33b39d5212a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1243613176}
   m_SourcePrefab: {fileID: 100100000, guid: 309cb4fc34c13e942a0cf33b39d5212a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
