@@ -1,15 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ClearCounter : MonoBehaviour
+public class ClearCounter : MonoBehaviour, IKitchenObjectParent
 {
+
     [SerializeField] private KitchenObjectSO kitchenObjectSo;
     [SerializeField] private Transform counterTopPoint;
-    [SerializeField] private ClearCounter secondClearCounter;
-    [SerializeField] private bool testing;
+    //[SerializeField] private ClearCounter secondClearCounter;
+    //[SerializeField] private bool testing;
 
     private KitchenObject kitchenObject;
 
+    /*
     private void Update()
     {
         if (testing && Keyboard.current.tKey.wasPressedThisFrame) //Input.GetKeyDown(KeyCode.T)) 
@@ -17,26 +19,30 @@ public class ClearCounter : MonoBehaviour
         {
             if (kitchenObject != null)
             {
-                kitchenObject.SetClearCounter(secondClearCounter);
+                kitchenObject.SetKitchenObjectParent(secondClearCounter);
                 //Debug.Log(kitchenObject.GetClearCounter());
             }
         }
     }
-    public void Interact()
+    */
+    public void Interact(Player player)
     {
         //Debug.Log("Interact!");
         if (kitchenObject == null)
         {
             Transform kitchenObjectTransform = Instantiate(kitchenObjectSo.prefab, counterTopPoint);
-            kitchenObjectTransform.GetComponent<KitchenObject>().SetClearCounter(this);
+            kitchenObjectTransform.GetComponent<KitchenObject>().SetKitchenObjectParent(this);
             /*
             kitchenObjectTransform.localPosition = Vector3.zero;
             kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
             kitchenObject.SetClearCounter(this);
             */
+
         } else
         {
-            Debug.Log(kitchenObject.GetClearCounter());
+            //kitchenObject.SetClearCounter(player);
+            //Debug.Log(kitchenObject.GetClearCounter());
+            kitchenObject.SetKitchenObjectParent(player);
         }
 
         //Debug.Log(kitchenObjectTransform.GetComponent<KitchenObject>().GetKitchenObjectSO().objectName);
