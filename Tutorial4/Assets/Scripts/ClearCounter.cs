@@ -1,15 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ClearCounter : MonoBehaviour, IKitchenObjectParent
+public class ClearCounter : BaseCounter
 {
 
     [SerializeField] private KitchenObjectSO kitchenObjectSo;
-    [SerializeField] private Transform counterTopPoint;
+    //[SerializeField] private Transform counterTopPoint;
     //[SerializeField] private ClearCounter secondClearCounter;
     //[SerializeField] private bool testing;
 
-    private KitchenObject kitchenObject;
+    //private KitchenObject kitchenObject;
 
     /*
     private void Update()
@@ -25,46 +25,34 @@ public class ClearCounter : MonoBehaviour, IKitchenObjectParent
         }
     }
     */
-    public void Interact(Player player)
+    public override void Interact(Player player)
     {
         //Debug.Log("Interact!");
-        if (kitchenObject == null)
+        //Debug.Log(kitchenObjectTransform.GetComponent<KitchenObject>().GetKitchenObjectSO().objectName);
+        if (!HasKitchenObject())
         {
-            Transform kitchenObjectTransform = Instantiate(kitchenObjectSo.prefab, counterTopPoint);
-            kitchenObjectTransform.GetComponent<KitchenObject>().SetKitchenObjectParent(this);
-            /*
-            kitchenObjectTransform.localPosition = Vector3.zero;
-            kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
-            kitchenObject.SetClearCounter(this);
-            */
-
+            //There is no KitchenObject here
+            if (player.HasKitchenObject())
+            {   
+                //player has somethjing
+                player.GetKitchenObject().SetKitchenObjectParent(this);
+            } else
+            {
+                //player has nothing
+            }
         } else
         {
-            //kitchenObject.SetClearCounter(player);
-            //Debug.Log(kitchenObject.GetClearCounter());
-            kitchenObject.SetKitchenObjectParent(player);
+            //There is Kitchen Object
+            if (player.HasKitchenObject())
+            {
+                //player has something
+
+            }
+            else
+            {
+                //player has nothing
+                GetKitchenObject().SetKitchenObjectParent(player);
+            }
         }
-
-        //Debug.Log(kitchenObjectTransform.GetComponent<KitchenObject>().GetKitchenObjectSO().objectName);
-    }
-
-    public Transform GetKitchenObjectFollowTransform()
-    {
-        return counterTopPoint;
-    }
-
-    public void SetKitchenObject(KitchenObject kitchenObject)
-    {
-        this.kitchenObject = kitchenObject;
-    }
-
-    public KitchenObject GetKitchenObject() { return kitchenObject; }
-    public void ClearKitchenObject()
-    {
-        kitchenObject = null;
-    }
-    public bool HasKitchenObject()
-    {
-        return kitchenObject != null;
     }
 }
