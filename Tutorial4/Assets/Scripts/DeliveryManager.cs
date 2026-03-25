@@ -96,4 +96,55 @@ public class DeliveryManager : MonoBehaviour
         return waitingRecipeSOList;
 
     }
+
+    /*
+     * public void DeliverRecipe(PlateKitchenObject plateKitchenObject)
+{
+    for (int i = 0; i < waitingRecipeSOList.Count; i++)
+    {
+        RecipeSO waitingRecipeSO = waitingRecipeSOList[i];
+
+        if (waitingRecipeSO.kitchenObjectSOList.Count == plateKitchenObject.GetKitchenObjectSOList().Count)
+        {
+            // same number of ingredients
+            bool plateCountentsMatchesRecipe = true;
+
+            foreach (KitchenObjectSO recipeKitchenObjectSO in waitingRecipeSO.kitchenObjectSOList)
+            {
+                // ingredients are cycled
+                bool ingredientFound = false;
+
+                foreach (KitchenObjectSO plateKitchenObjectSO in plateKitchenObject.GetKitchenObjectSOList())
+                {
+                    // cycling through all ingredients in the plate
+                    if (plateKitchenObjectSO == recipeKitchenObjectSO)
+                    {
+                        // ingredient matches!
+                        ingredientFound = true;
+                        break;
+                    }
+                }
+
+                if (!ingredientFound)
+                {
+                    // recipe ingredient not found on plate
+                    plateCountentsMatchesRecipe = false;
+                }
+            }
+
+            if (plateCountentsMatchesRecipe)
+            {
+                // Player got the right recipe
+                Debug.Log("Player got the correct recipe!");
+                waitingRecipeSOList.RemoveAt(i);
+                return;
+            }
+        }
+    }
+
+    // No Matches found!
+    // Player did not deliver a correct recipe
+    Debug.Log("Player did not deliver a correct recipe");
+}
+     */
 }
