@@ -52,7 +52,7 @@ public class StoveCounter : BaseCounter, IHasProgress
                         GetKitchenObject().DestroySelf();
                         KitchenObject.SpawnKictchenObject(fryingRecipeSO.output, this);
 
-                        Debug.Log("Object Fried!");
+                        //Debug.Log("Object Fried!");
                         state = State.Fried;
                         burningTimer = 0f;
                         burningRecipeSO = GetBurningRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
@@ -77,7 +77,7 @@ public class StoveCounter : BaseCounter, IHasProgress
                         GetKitchenObject().DestroySelf();
                         KitchenObject.SpawnKictchenObject(burningRecipeSO.output, this);
 
-                        Debug.Log("Object Burned!");
+                        //Debug.Log("Object Burned!");
                         state = State.Burned;
 
                         OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
@@ -94,7 +94,7 @@ public class StoveCounter : BaseCounter, IHasProgress
                 case State.Burned:
                     break;
             }
-            Debug.Log(state);
+            //Debug.Log(state);
         }
     }
     public override void Interact(Player player)

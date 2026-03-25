@@ -22,18 +22,15 @@ public class PlateKitchenObject : KitchenObject
         {
             return false;
         }
-        if (kitchenObjectSOList.Contains(kitchenObjectSO))
-        {
-            return false;
-        } else { 
-            kitchenObjectSOList.Add(kitchenObjectSO);
 
-            OnIngredientAdded?.Invoke(this, new OnIngredientAddedEventArgs
-            {
-                kitchenObjectSO = kitchenObjectSO
-            });
-            return true;
-        }
+        kitchenObjectSOList.Add(kitchenObjectSO);
+
+        OnIngredientAdded?.Invoke(this, new OnIngredientAddedEventArgs
+        {
+            kitchenObjectSO = kitchenObjectSO
+        });
+
+        return true;
     }
 
     public List<KitchenObjectSO> GetKitchenObjectSOList()

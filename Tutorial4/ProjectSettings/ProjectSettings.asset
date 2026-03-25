@@ -924,10 +924,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 067e095d-a416-47b5-8ee3-47cac24ccd88
+  cloudProjectId: 35fee076-27d6-46b3-b8fd-f4c21207d3f1
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: TutorialsAssignment
+  projectName: TutorialsPart2
   organizationId: jongo_unity
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
