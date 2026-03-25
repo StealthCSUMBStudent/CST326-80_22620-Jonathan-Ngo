@@ -345,11 +345,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5030953186995731473}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aa880ad299b0b04cba2bdf2c21b6fa5, type: 3}
+  m_Script: {fileID: 11500000, guid: a248b5a542ba37b4b920e47d7744280e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClearCounter
-  kitchenObjectSo: {fileID: 11400000, guid: da485c126015de64f874afd77775225f, type: 2}
   counterTopPoint: {fileID: 8724134388112163051}
+  kitchenObjectSo: {fileID: 0}
 --- !u!4 &8724134388112163051 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1844200369190106630, guid: e80d5c858d1008942a12bc931b6c19d3, type: 3}

@@ -49,6 +49,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3580501811394563816, guid: 4ca25b3184ecbeb429b38b93eedf6bef, type: 3}
+      propertyPath: counterTopPoint
+      value: 
+      objectReference: {fileID: 6075955433097037435}
+    - target: {fileID: 3580501811394563816, guid: 4ca25b3184ecbeb429b38b93eedf6bef, type: 3}
       propertyPath: kitchenObjectSO
       value: 
       objectReference: {fileID: 11400000, guid: eeb91a9aade069648a9701ffb83ee421, type: 2}
@@ -65,3 +69,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ca25b3184ecbeb429b38b93eedf6bef, type: 3}
+--- !u!4 &6075955433097037435 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6125049131563381472, guid: 4ca25b3184ecbeb429b38b93eedf6bef, type: 3}
+  m_PrefabInstance: {fileID: 95326549934142619}
+  m_PrefabAsset: {fileID: 0}

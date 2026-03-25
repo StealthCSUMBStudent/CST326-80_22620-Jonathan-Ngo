@@ -58,7 +58,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4589716710238282922, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7293917040820725700}
+      addedObject: {fileID: 7786314931590978852}
   m_SourcePrefab: {fileID: 100100000, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
 --- !u!4 &8323455839022413350 stripped
 Transform:
@@ -70,7 +70,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4589716710238282922, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
   m_PrefabInstance: {fileID: 5490778531828437645}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7293917040820725700
+--- !u!114 &7786314931590978852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8323455839022413351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcf207db346aa1f44b74b0488a742000, type: 3}
+  m_Script: {fileID: 11500000, guid: e276f8e5be7ea3c4dbc388f75918a73e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ContainerCounterVisual
   containerCounter: {fileID: 3580501811394563816}
@@ -154,11 +154,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4710223771864485005, guid: e80d5c858d1008942a12bc931b6c19d3, type: 3}
   m_PrefabInstance: {fileID: 5518987402713892070}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &6125049131563381472 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1844200369190106630, guid: e80d5c858d1008942a12bc931b6c19d3, type: 3}
-  m_PrefabInstance: {fileID: 5518987402713892070}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7621032850555112986 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2689837767251561212, guid: e80d5c858d1008942a12bc931b6c19d3, type: 3}
@@ -173,11 +168,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7621032850555112986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49ddf4c6716883247af8e06ed9f325ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 57695a2558963bd48aa30f2bf47c5ebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ContainerCounter
-  counterTopPoint: {fileID: 6125049131563381472}
-  kitchenObjectSo: {fileID: 11400000, guid: da485c126015de64f874afd77775225f, type: 2}
+  counterTopPoint: {fileID: 0}
+  kitchenObjectSO: {fileID: 0}
 --- !u!1001 &7786801404828215763
 PrefabInstance:
   m_ObjectHideFlags: 0
