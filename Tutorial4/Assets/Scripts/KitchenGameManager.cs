@@ -20,7 +20,7 @@ public class KitchenGameManager : MonoBehaviour
 
 
     private State state;
-    private float waitingToStartTimer = 1f;
+    //private float waitingToStartTimer = 1f;
     private float countdownToStartTimer = 3f;
     private float gamePlayingTimer;
     private float gamePlayingTimerMax = 30f;
@@ -59,11 +59,13 @@ public class KitchenGameManager : MonoBehaviour
         switch (state)
         {
             case State.WaitingToStart:
+                /*
                 waitingToStartTimer -= Time.deltaTime;
                 if (waitingToStartTimer < 0f)
                 {
                     state = State.CountdownToStart;
                 }
+                */
                 break;
             case State.CountdownToStart:
                 countdownToStartTimer -= Time.deltaTime;
