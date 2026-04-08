@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 720344e852dbea049be6e28dfb179879, type: 3}
+  m_Script: {fileID: 11500000, guid: 963ed764f76f98e4da3c2d22dbf8f562, type: 3}
   m_Name: Cheese
   m_EditorClassIdentifier: Assembly-CSharp::KitchenObjectSO
   prefab: {fileID: 5527095553978465442, guid: 5458388b53d00d64cb2e3ca2de91febc, type: 3}
